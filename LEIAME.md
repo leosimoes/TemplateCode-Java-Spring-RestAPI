@@ -15,6 +15,16 @@ As etapas de desenvolvimento do projeto foram:
 
 ![Image-01-IntelliJ](images/Image-01-IntelliJ.png)
 
+2. Alterar início da tela de Run com texto (ou imagem) personalizado:
+- formatar o texto desejado usando `https://springhow.com/spring-boot-banner-generator/` e baixar `banner.txt`;
+
+![Image-02-BannerGenerator](images/Image-02-BannerGenerator.png)
+
+- colocar o arquivo `banner.txt` em `src/main/resources` (ou outro caminho);
+- (opcional) adicionar `${spring.application.name}` e `Spring Boot ${spring-boot.formatted-version}` em `banner.txt`;
+- (opcional) configurar o caminho do arquivo `banner.txt` em `application.properties`:
+  * `spring.banner.location=classpath:/banner.txt`. 
+
 
 ## Referências
 Spring - Guides - Tutorials - Building REST services with Spring:
