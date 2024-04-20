@@ -25,6 +25,39 @@ As etapas de desenvolvimento do projeto foram:
 - (opcional) configurar o caminho do arquivo `banner.txt` em `application.properties`:
   * `spring.banner.location=classpath:/banner.txt`. 
 
+3. Configurar o banco de dados H2: 
+- Em `build.gradle` configurar de acordo com o tipo de uso desejado:
+  * `implementation 'com.h2database:h2'`;
+  * `runtimeOnly 'com.h2database:h2'`;
+  * `testImplementation 'com.h2database:h2'`;
+- Em `application.properties`:
+
+```properties
+# ======================================================
+#               APPLICATION
+# ======================================================
+spring.application.name=TemplateCode-Java-Spring-RestAPI
+# spring.banner.location=classpath:/banner.txt
+# ======================================================
+#               DATASOURCE - H2 DATABASE
+# ======================================================
+spring.datasource.url=jdbc:h2:mem:proddb
+spring.datasource.driver-class-name=org.h2.Driver
+spring.datasource.username=leo
+spring.datasource.password=senha
+spring.h2.console.enabled=true
+spring.h2.console.path=/h2
+```
+
+![Image-03-Terminal-Run](images/Image-03-Terminal-Run.png)
+
+- testar acesso ao console do H2 em `http://localhost:8080/h2/`:
+
+![Image-04-B-ConsoleH2](images/Image-04-B-ConsoleH2.png)
+
+Obs.: 
+- Por padrão, o usename seria "sa" e a senha "", e o console do h2 estaria desativado.
+
 
 ## Referências
 Spring - Guides - Tutorials - Building REST services with Spring:
@@ -32,3 +65,6 @@ https://spring.io/guides/tutorials/rest
 
 Baeldung - Rest with Spring Series:
 https://www.baeldung.com/rest-with-spring-series
+
+Baeldung - Spring Boot With H2 Database:
+https://www.baeldung.com/spring-boot-h2-database
