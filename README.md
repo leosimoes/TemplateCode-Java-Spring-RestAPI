@@ -58,6 +58,26 @@ spring.h2.console.path=/h2
 Note:
 - By default, the usename would be "sa" and the password "", and the h2 console would be disabled.
 
+4. Create AssociatedEntity class:
+- with attributes UUID id, String name;
+- corresponding to the table named `ASSOCIATEDS`.
+
+5. Create MainEntity class:
+- with UUID id, String name, String description and AssociatedEntity associated attributes;
+- corresponding to the table named `MAINS`.
+
+![Image-05-UML-Classes-Entities](images/Image-05-UML-Classes-Entities.png)
+
+Note: When creating classes that represent database entities:
+- annotate them with `@Entity`, `@Table(name="...")` to map entity;
+- annotate them with `@Data`, `@NoArgsConstructor`, `@AllArgsConstructor` to use Lombok;
+- add attribute `UUID id` annotated with `@Id` and `@GeneratedValue(strategy = GenerationType.UUID)`;
+- configure relationships with `@ManyToOne`, `@OneToMany` or `@OneToOne` in attributes that are objects;
+- configure the other columns with `@Column` and perhaps some validator like `@NotBlank` or `@NotNull`;
+- log into the H2 console and check if the tables were created correctly:
+
+![Image-06-ConsoleH2-Tables](images/Image-06-ConsoleH2-Tables.png)
+
 
 ## References
 Spring - Guides - Tutorials - Building REST services with Spring:
