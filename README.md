@@ -59,10 +59,12 @@ Note:
 - By default, the usename would be "sa" and the password "", and the h2 console would be disabled.
 
 4. Create AssociatedEntity class:
+- in the `entities` package;
 - with attributes UUID id, String name;
 - corresponding to the table named `ASSOCIATEDS`.
 
 5. Create MainEntity class:
+- in the `entities` package;
 - with UUID id, String name, String description and AssociatedEntity associated attributes;
 - corresponding to the table named `MAINS`.
 
@@ -78,6 +80,23 @@ Note: When creating classes that represent database entities:
 
 ![Image-06-ConsoleH2-Tables](images/Image-06-ConsoleH2-Tables.png)
 
+6. Create tables from SQL script (not from Hibernate):
+- run the application with `spring.jpa.hibernate.ddl-auto=create-drop` in `application.properties`;
+- execute the command `SCRIPT` or (`SCRIPT TO 'D:/schema.sql'`) to obtain SQL code for creating tables;
+- place the content of the previous step in `src/main/resources/schema.sql`;
+- run the application with `spring.jpa.hibernate.ddl-auto=none` and
+  `spring.jpa.defer-datasource-initialization=true` in `application.properties`;
+
+```properties
+# spring.jpa.hibernate.ddl-auto=create-drop
+spring.jpa.hibernate.ddl-auto=none
+spring.jpa.defer-datasource-initialization=true
+spring.sql.init.mode=always
+```
+
+- (optional) configure the `schema.sql` file path in `application.properties`:
+  * `spring.sql.init.schema-locations=classpath:/schema.sql`.
+
 
 ## References
 Spring - Guides - Tutorials - Building REST services with Spring:
@@ -88,3 +107,6 @@ https://www.baeldung.com/rest-with-spring-series
 
 Baeldung - Spring Boot With H2 Database:
 https://www.baeldung.com/spring-boot-h2-database
+
+Baeldung - Quick Guide on Loading Initial Data with Spring Boot:
+https://www.baeldung.com/spring-boot-data-sql-and-schema-sql
