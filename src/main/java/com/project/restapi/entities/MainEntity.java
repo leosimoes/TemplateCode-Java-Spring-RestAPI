@@ -18,7 +18,7 @@ public class MainEntity {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column
+    @Column(unique = true)
     @NotBlank
     private String name;
 
