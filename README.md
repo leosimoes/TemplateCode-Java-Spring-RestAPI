@@ -97,6 +97,17 @@ spring.sql.init.mode=always
 - (optional) configure the `schema.sql` file path in `application.properties`:
   * `spring.sql.init.schema-locations=classpath:/schema.sql`.
 
+![Image-07-ConsoleH2-BackupSQL](images/Image-07-ConsoleH2-BackupSQL.png)
+
+7. Create `AssociatedRepository` and `MainRepository` interfaces:
+- in the `repositories` package;
+- annotated with `@Repository`;
+- extends `JPARepository`;
+- have declaration of the methods `Boolean existsByNameEqualsIgnoreCase(String name)` and
+  `Optional<MainEntity> findByNameEqualsIgnoreCase(String name);`.
+
+![Image-08-UML-Interfaces-Repositories](images/Image-08-UML-Interfaces-Repositories.png)
+
 
 ## References
 Spring - Guides - Tutorials - Building REST services with Spring:
