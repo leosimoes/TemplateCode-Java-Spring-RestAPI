@@ -114,6 +114,28 @@ spring.sql.init.mode=always
 
 ![Image-09-UML-Records](images/Image-09-UML-Records.png)
 
+9. Criar mappers entre records ("payloads") e classes ("entities"):
+- adicionar complementos em `build.gradle`:
+
+```groovy
+// compileOnly 'org.projectlombok:lombok'
+implementation 'org.projectlombok:lombok'
+implementation 'org.mapstruct:mapstruct:1.5.5.Final'
+annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
+testAnnotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
+implementation 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
+```
+
+- criar as interfaces `AssociatedMapper` e `MainMapper`:
+  * anotadas com `@Mapper`;
+  * com atributo `INSTANCE`;
+  * com 4 métodos para conversões entre entidade e payload, e entre lista de entidades e lista de payloads;
+  * `MainMapper` tem dois métodos auxiliares:
+    * `default AssociatedEntity toAssociated(MainPayload payload)`;
+    * `default String map(AssociatedEntity associatedEntity)`;
+
+![Image-10-UML-Interfaces-Mappers](images/Image-10-UML-Interfaces-Mappers.png)
+
 
 ## Referências
 Spring - Guides - Tutorials - Building REST services with Spring:
@@ -127,3 +149,6 @@ https://www.baeldung.com/spring-boot-h2-database
 
 Baeldung - Quick Guide on Loading Initial Data with Spring Boot:
 https://www.baeldung.com/spring-boot-data-sql-and-schema-sql
+
+DZone - That’s How You Can Use MapStruct With Lombok in Your Spring Boot Application:
+https://dzone.com/articles/thats-why-you-need-to-use-mapstruct-in-your-spring
