@@ -108,6 +108,12 @@ spring.sql.init.mode=always
 
 ![Image-08-UML-Interfaces-Repositories](images/Image-08-UML-Interfaces-Repositories.png)
 
+8. Create `AssociatedPayload` and `MainPayload` records:
+- in the `records` package;
+- with a constructor without arguments;
+
+![Image-09-UML-Records](images/Image-09-UML-Records.png)
+
 
 ## References
 Spring - Guides - Tutorials - Building REST services with Spring:
