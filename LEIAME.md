@@ -127,6 +127,7 @@ implementation 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
 ```
 
 - criar as interfaces `AssociatedMapper` e `MainMapper`:
+  * no pacote `mappers`;
   * anotadas com `@Mapper`;
   * com atributo `INSTANCE`;
   * com 4 métodos para conversões entre entidade e payload, e entre lista de entidades e lista de payloads;
@@ -137,6 +138,7 @@ implementation 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
 ![Image-10-UML-Interfaces-Mappers](images/Image-10-UML-Interfaces-Mappers.png)
 
 10. Criar camada de Services:
+- no pacote `services`;
 - adicionar interfaces `MainService` e `AssociatedService`;
 - adicionar classes `MainServiceImpl` e `AssociatedServiceImpl`:
   * anotadas com `@Service`;
@@ -146,6 +148,15 @@ implementation 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
 - os métodos devem ser `create`, `getByName`, `getAll`, `update` e `deleteByName`;
 
 ![Image-11-UML-Services](images/Image-11-UML-Services.png)
+
+11. Criar camada de Controllers:
+- no pacote `controllers`;
+- adicionar classes `MainController` e `AssociatedController`:
+  * anotadas com `@RestController` e `@RequestMapping("api/v1/...")`;
+  * possuem um construtor com um atributo e anotado com `@Autowired`;
+  * os métodos devem ser `create`, `getByName`, `getAll`, `update` e `deleteByName`.
+
+![Image-12-UML-Controllers](images/Image-12-UML-Controllers.png)
 
 
 ## Referências
