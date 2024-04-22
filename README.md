@@ -108,13 +108,13 @@ spring.sql.init.mode=always
 
 ![Image-08-UML-Interfaces-Repositories](images/Image-08-UML-Interfaces-Repositories.png)
 
-8. Create `AssociatedPayload` and `MainPayload` records:
-- in the `records` package;
-- with a constructor without arguments;
+8. Create dtos classes `AssociatedPayload` and `MainPayload`:
+- in the `dtos` package;
+- annotated with `@Data`, `@Builder`, `@NoArgsConstructor`, `@AllArgsConstructor` to use Lombok;
 
-![Image-09-UML-Records](images/Image-09-UML-Records.png)
+![Image-09-UML-Classes-DTOs](images/Image-09-UML-Classes-DTOs.png)
 
-9. Create mappers between records ("payloads") and classes ("entities"):
+9. Create mappers between dtos classes ("payloads") and entities classes ("entities"):
 - add addons in `build.gradle`:
 
 ```groovy
