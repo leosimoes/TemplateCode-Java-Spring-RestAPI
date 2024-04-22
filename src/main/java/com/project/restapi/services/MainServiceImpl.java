@@ -68,7 +68,10 @@ public class MainServiceImpl implements MainService{
         if(mainEntityOpt.isEmpty()){
             throw new RuntimeException("Exception in mainService.update() - MainEntity Not Found");
         }
-        MainEntity mainEntitySaved = this.mainRepository.save(mainEntityOpt.get());
+
+        MainEntity mainEntity = this.mainMapper.toMainEntity(mainPayload);
+        mainEntity.setId(mainEntityOpt.get().getId());
+        MainEntity mainEntitySaved = this.mainRepository.save(mainEntity);
 
         return this.mainMapper.toMainPayload(mainEntitySaved);
     }

@@ -55,7 +55,10 @@ public class AssociatedServiceImpl implements AssociatedService{
         if(associatedEntityOpt.isEmpty()){
             throw new RuntimeException("Exception in associatedService.update() - AssociatedEntity Not Found");
         }
-        AssociatedEntity associatedEntitySaved = this.associatedRepository.save(associatedEntityOpt.get());
+
+        AssociatedEntity associatedEntity = this.associatedMapper.toAssociatedEntity(associatedPayload);
+        associatedEntity.setId(associatedEntityOpt.get().getId());
+        AssociatedEntity associatedEntitySaved = this.associatedRepository.save(associatedEntity);
 
         return this.associatedMapper.toAssociatedPayload(associatedEntitySaved);
     }
