@@ -72,7 +72,7 @@ Note:
 
 Note: When creating classes that represent database entities:
 - annotate them with `@Entity`, `@Table(name="...")` to map entity;
-- annotate them with `@Data`, `@NoArgsConstructor`, `@AllArgsConstructor` to use Lombok;
+- annotate them with `@Data`, `@Builder`, `@NoArgsConstructor`, `@AllArgsConstructor` to use Lombok;
 - add attribute `UUID id` annotated with `@Id` and `@GeneratedValue(strategy = GenerationType.UUID)`;
 - configure relationships with `@ManyToOne`, `@OneToMany` or `@OneToOne` in attributes that are objects;
 - configure the other columns with `@Column` and perhaps some validator like `@NotBlank` or `@NotNull`;
@@ -135,6 +135,17 @@ implementation 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
     * `default String map(AssociatedEntity associatedEntity)`;
 
 ![Image-10-UML-Interfaces-Mappers](images/Image-10-UML-Interfaces-Mappers.png)
+
+10. Create Services layer:
+- add `MainService` and `AssociatedService` interfaces;
+- add `MainServiceImpl` and `AssociatedServiceImpl` classes:
+  * annotated with `@Service`;
+  * implement the interfaces;
+  * have the mapper and repository(ies) of the entity(ies);
+  * have a constructor with all attributes and annotated with `@Autowired`;
+- the methods must be `create`, `getByName`, `getAll`, `update` and `deleteByName`;
+
+![Image-11-UML-Services](images/Image-11-UML-Services.png)
 
 
 ## References

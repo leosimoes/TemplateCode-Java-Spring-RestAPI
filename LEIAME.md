@@ -72,7 +72,7 @@ Obs.:
 
 Obs.: Ao criar classes que representam entidades do banco de dados:
 - anotá-las com `@Entity`, `@Table(name="...")` para mapear entidade; 
-- anotá-las com `@Data`, `@NoArgsConstructor`, `@AllArgsConstructor` para usar o Lombok;
+- anotá-las com `@Data`, `@Builder`, `@NoArgsConstructor`, `@AllArgsConstructor` para usar o Lombok;
 - adicionar atributo `UUID id` anotado com `@Id` e `@GeneratedValue(strategy = GenerationType.UUID)`;
 - configurar relacionamentos com `@ManyToOne`, `@OneToMany` ou `@OneToOne` em atributos que são objetos;
 - configurar as outras colunas com `@Column` e talvez algum validador como `@NotBlank` ou `@NotNull`;
@@ -135,6 +135,17 @@ implementation 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
     * `default String map(AssociatedEntity associatedEntity)`;
 
 ![Image-10-UML-Interfaces-Mappers](images/Image-10-UML-Interfaces-Mappers.png)
+
+10. Criar camada de Services:
+- adicionar interfaces `MainService` e `AssociatedService`;
+- adicionar classes `MainServiceImpl` e `AssociatedServiceImpl`:
+  * anotadas com `@Service`;
+  * implementam as interfaces;
+  * possuem o mapper e repository(ies) da(s) entidade(s);
+  * possuem um construtor com todos os atributos e anotado com `@Autowired`;
+- os métodos devem ser `create`, `getByName`, `getAll`, `update` e `deleteByName`;
+
+![Image-11-UML-Services](images/Image-11-UML-Services.png)
 
 
 ## Referências
