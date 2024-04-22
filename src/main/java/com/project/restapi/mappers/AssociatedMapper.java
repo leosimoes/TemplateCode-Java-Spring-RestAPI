@@ -1,7 +1,7 @@
 package com.project.restapi.mappers;
 
 import com.project.restapi.entities.AssociatedEntity;
-import com.project.restapi.records.AssociatedPayload;
+import com.project.restapi.dtos.AssociatedPayload;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
