@@ -1,6 +1,8 @@
 package com.project.restapi.services;
 
 import com.project.restapi.entities.AssociatedEntity;
+import com.project.restapi.exceptions.AssociatedNameAlreadyRegisteredException;
+import com.project.restapi.exceptions.AssociatedNotFoundException;
 import com.project.restapi.mappers.AssociatedMapper;
 import com.project.restapi.dtos.AssociatedPayload;
 import com.project.restapi.repositories.AssociatedRepository;
@@ -25,7 +27,7 @@ public class AssociatedServiceImpl implements AssociatedService{
     public AssociatedPayload create(AssociatedPayload associatedPayload) {
         String name = associatedPayload.getName();
         if(this.associatedRepository.existsByNameEqualsIgnoreCase(name)){
-            throw new RuntimeException("Exception in associatedService.create() - Name Already Registered");
+            throw new AssociatedNameAlreadyRegisteredException("Exception in associatedService.create() - Name Already Registered");
         }
 
         AssociatedEntity associatedEntity = this.associatedMapper.toAssociatedEntity(associatedPayload);
@@ -37,7 +39,7 @@ public class AssociatedServiceImpl implements AssociatedService{
     public AssociatedPayload getByName(String name) {
         Optional<AssociatedEntity> associatedEntityOpt = this.associatedRepository.findByNameEqualsIgnoreCase(name);
         if(associatedEntityOpt.isEmpty()){
-            throw new RuntimeException("Exception in associatedService.getByName() - AssociatedEntity Not Found");
+            throw new AssociatedNotFoundException("Exception in associatedService.getByName() - AssociatedEntity Not Found");
         }
 
         return this.associatedMapper.toAssociatedPayload(associatedEntityOpt.get());
@@ -53,7 +55,7 @@ public class AssociatedServiceImpl implements AssociatedService{
         String name = associatedPayload.getName();
         Optional<AssociatedEntity> associatedEntityOpt = this.associatedRepository.findByNameEqualsIgnoreCase(name);
         if(associatedEntityOpt.isEmpty()){
-            throw new RuntimeException("Exception in associatedService.update() - AssociatedEntity Not Found");
+            throw new AssociatedNotFoundException("Exception in associatedService.update() - AssociatedEntity Not Found");
         }
 
         AssociatedEntity associatedEntity = this.associatedMapper.toAssociatedEntity(associatedPayload);
@@ -66,7 +68,7 @@ public class AssociatedServiceImpl implements AssociatedService{
     public void deleteByName(String name) {
         Optional<AssociatedEntity> associatedEntityOpt = this.associatedRepository.findByNameEqualsIgnoreCase(name);
         if(associatedEntityOpt.isEmpty()){
-            throw new RuntimeException("Exception in associatedService.deleteByName() - AssociatedEntity Not Found");
+            throw new AssociatedNotFoundException("Exception in associatedService.deleteByName() - AssociatedEntity Not Found");
         }
         this.associatedRepository.delete(associatedEntityOpt.get());
     }

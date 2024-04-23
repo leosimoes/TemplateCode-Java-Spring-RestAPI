@@ -158,6 +158,24 @@ implementation 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
 
 ![Image-12-UML-Controllers](images/Image-12-UML-Controllers.png)
 
+12. Criar Excetions:
+- no pacote `exceptions`;
+- com nomes `AssociatedNotFoundException`, `MainNotFoundException` `AssociatedNameAlreadyRegisteredException` e
+  `MainNameAlreadyRegisteredException`;
+- herdam de `RuntimeException`;
+- possuem um contrutor com argumento `String message` e outro com `String message, Throwable cause` como argumentos;
+- usá-las ao invés de `RunTimeException` nas implementações das Services.
+
+13. Criar classe `ResourcesControllerAdvice`:
+- no pacote `exceptions`;
+- anotada com `@RestControllerAdvice`;
+- os métodos:
+  * anotados com `@ExceptionHandler`, e recebe alguma exceção; 
+  * tem nomes iniciados com "handle";
+  * retornan `ResponseEntity<String>`.
+
+![Image-13-UML-Classes-Exceptions](images/Image-13-UML-Classes-Exceptions.png)
+
 
 ## Referências
 Spring - Guides - Tutorials - Building REST services with Spring:
